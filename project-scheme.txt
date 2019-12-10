@@ -1,0 +1,88 @@
+class SmartHouse {
+    properties:
+        #name: string
+        #devicesList: Map<number, DeviceInterface>
+    behavior:
+        +constructor(name: string): void
+        
+        +getName(): string
+        +setName(name: string): void
+     
+        -generateId(): number
+        
+        +addDevice(device: DeviceInterface): void
+        +getDevicesList(): string[]
+        +getIdOfDevice(device: DeviceInterface): number | undefined
+        +getDeviceById(id: number): DeviceInterface | undefined
+        +deleteDeviceById(id: number): void
+        +deleteAllDevices(): void
+        
+        +onAllDevices(): void
+        +offAllDevices(): void
+ }
+ 
+ class Device {
+    properties:
+        #state: boolean
+        +name: string
+        #temperature: number
+    behavior:
+        +constructor(name: string): void
+        +on(): void
+        +off(): void
+        +getState(): boolean
+        +getName(): string
+        +getTemperature(): number
+ }
+ 
+ class Iron extends Device {
+    properties:
+        #temperatureMin: number
+        #temperatureMax: number
+        #steamerOn: boolean
+        #waterLevel: number
+        #waterLevelMax: number
+    behavior:
+        +constructor(name: string, temperature: number, steamerOn: bollean): void
+ 
+        +increaseTemperature():  void
+        +decreaseTemperature(): void
+ 
+        +handleSteamer(): void
+        +getSteamerOn(): boolean
+ 
+        +getWaterLevel(): number
+        +addWater(): void
+ }
+
+ class Oven extends Device {
+    properties:
+        #temperatureMin: number
+        #temperatureMax: number
+        #timer: number // 1-300
+        #timerMin: number
+        #timerMax: number
+        #lampOn: boolean
+        #modes: [string] // "grill", "defrosting", "standart"
+        #currentMode: number
+        #isReady: boolean
+    behavior:
+        +constructor(name: string): void
+        +off(): void
+
+        +setTemperature(temperature: number): void
+ 
+        +getTimer(): number
+        +setTimer(time: number): void
+ 
+        +handlelamp(): void
+        +getLampOn(): boolean
+ 
+        +getCurrentMode(): string
+        +nextMode(): void
+        +previousMode(): void
+ 
+        +run(): void 
+        +runMode(): void
+ }
+ 
