@@ -1,8 +1,8 @@
-import { DeviceInterface } from '../device/types';
+import { IDevice } from '../device/types';
 
 export default class SmartHouse {
     protected name: string;
-    protected devicesList: Map<number, DeviceInterface>;
+    protected devicesList: Map<number, IDevice>;
 
     constructor(name: string) {
         this.name = name;
@@ -12,24 +12,22 @@ export default class SmartHouse {
     public getName(): string {
         return this.name;
     }
-    public setName(name: string): void {
-        if (name.length > 0) {
-            this.name = name;
-        }
+    public setName(name: string = ''): void {
+        this.name = name;
     }
 
     private generateId(): number {
         return Math.floor(Math.random() * 100000000 + 1);
     }
 
-    public addDevice(device: DeviceInterface): void {
+    public addDevice(device: IDevice): void {
         const id = this.generateId();
         this.devicesList.set(id, device);
     }
-    public getDevicesList(): DeviceInterface[] {
+    public getDevicesList(): IDevice[] {
         return [...this.devicesList.values()];
     }
-    public getIdOfDevice(device: DeviceInterface): number | undefined {
+    public getIdOfDevice(device: IDevice): number | undefined {
         const foundSet = [...this.devicesList.entries()].find(([, value]) => {
             return value === device;
         });
@@ -37,7 +35,7 @@ export default class SmartHouse {
         return foundSet ? foundSet[0] : undefined;
     }
 
-    public getDeviceById(id: number): DeviceInterface | undefined {
+    public getDeviceById(id: number): IDevice | undefined {
         return this.devicesList.get(id);
     }
     public deleteDeviceById(id: number): void {

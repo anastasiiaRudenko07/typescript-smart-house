@@ -1,6 +1,22 @@
 import { Device } from '../device/device';
 import { OvenInterface } from './types';
 
+enum Modes {
+    standart = 'standart',
+    grill = 'grill',
+    defrosting = 'defrosting',
+}
+
+const TIMER_STANDART_MODE = 1800000; /*30 min*/
+const TIMER_GRILL_MODE = 2400000; /*40 min*/
+const TIMER_DEFROSTING_MODE = 1800000; /*30 min*/
+const TIMER_DEFAULT = 600000; /*10 min*/
+
+const TEMPERATURE_STANDART_MODE = 180;
+const TEMPERATURE_GRILL_MODE = 200;
+const TEMPERATURE_DEFROSTING_MODE = 30;
+const TEMPERATURE_DEFAULT = 150;
+
 export class Oven extends Device implements OvenInterface {
     protected temperatureMin: number = 0; /*degrees celsius*/
     protected temperatureMax: number = 250;
@@ -8,8 +24,8 @@ export class Oven extends Device implements OvenInterface {
     protected timerMin: number = 1;
     protected timerMax: number = 7200000; /*2 hours*/
     protected lampOn: boolean = false;
-    protected modes: string[] = ['standart', 'grill', 'defrosting'];
-    protected currentMode: string = 'standart';
+    protected modes: string[] = Object.values(Modes);
+    protected currentMode: string = Modes.standart;
     protected isReady: boolean = false;
 
     constructor(name: string) {
@@ -80,24 +96,24 @@ export class Oven extends Device implements OvenInterface {
     }
     public runMode(): void {
         switch (this.currentMode) {
-            case 'standart':
-                this.temperature = 180;
-                this.timer = 1800000; /*30 min*/
+            case Modes.standart:
+                this.temperature = TEMPERATURE_STANDART_MODE;
+                this.timer = TIMER_STANDART_MODE;
                 this.run();
                 break;
-            case 'grill':
-                this.temperature = 200;
-                this.timer = 2400000; /*40 min*/
+            case Modes.grill:
+                this.temperature = TEMPERATURE_GRILL_MODE;
+                this.timer = TIMER_GRILL_MODE;
                 this.run();
                 break;
-            case 'defrosting':
-                this.temperature = 30;
-                this.timer = 1800000; /*30 min*/
+            case Modes.defrosting:
+                this.temperature = TEMPERATURE_DEFROSTING_MODE;
+                this.timer = TIMER_DEFROSTING_MODE;
                 this.run();
                 break;
             default:
-                this.temperature = 150;
-                this.timer = 600000; /*10 min*/
+                this.temperature = TEMPERATURE_DEFAULT;
+                this.timer = TIMER_DEFAULT;
                 this.run();
                 break;
         }

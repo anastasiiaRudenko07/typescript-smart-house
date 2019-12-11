@@ -1,4 +1,4 @@
-export interface DeviceInterface {
+export interface IDevice {
     on(): void;
     off(): void;
     getState(): boolean;

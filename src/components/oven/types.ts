@@ -1,6 +1,6 @@
-import { DeviceInterface } from '../device/types';
+import { IDevice } from '../device/types';
 
-export interface OvenInterface extends DeviceInterface {
+export interface OvenInterface extends IDevice {
     off(): void;
     setTemperature(temperature: number): void;
     getTimer(): number;

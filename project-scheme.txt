@@ -1,7 +1,7 @@
 class SmartHouse {
     properties:
         #name: string
-        #devicesList: Map<number, DeviceInterface>
+        #devicesList: Map<number, IDevice>
     behavior:
         +constructor(name: string): void
         
@@ -10,10 +10,10 @@ class SmartHouse {
      
         -generateId(): number
         
-        +addDevice(device: DeviceInterface): void
-        +getDevicesList(): DeviceInterface[]
-        +getIdOfDevice(device: DeviceInterface): number | undefined
-        +getDeviceById(id: number): DeviceInterface | undefined
+        +addDevice(device: IDevice): void
+        +getDevicesList(): IDevice[]
+        +getIdOfDevice(device: IDevice): number | undefined
+        +getDeviceById(id: number): IDevice | undefined
         +deleteDeviceById(id: number): void
         +deleteAllDevices(): void
         

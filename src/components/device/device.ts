@@ -1,6 +1,6 @@
-import { DeviceInterface } from './types';
+import { IDevice } from './types';
 
-export class Device implements DeviceInterface {
+export class Device implements IDevice {
     protected name: string = '';
     protected state: boolean = false;
     protected temperature: number = 0;
