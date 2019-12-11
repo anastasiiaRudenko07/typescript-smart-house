@@ -1,7 +1,6 @@
 import { Device } from '../device/device';
 import { IronInterface } from './types';
 
-
 export class Iron extends Device implements IronInterface {
     protected temperatureMin: number = 0;
     protected temperatureMax: Number = 3;
@@ -17,21 +16,21 @@ export class Iron extends Device implements IronInterface {
     public increaseTemperature(): void {
         if (this.temperature >= this.temperatureMax) {
             return;
-          }
-          this.temperature = ++this.temperature;
+        }
+        this.temperature = ++this.temperature;
     }
     public decreaseTemperature(): void {
         if (this.temperature <= this.temperatureMin) {
-          return;
+            return;
         }
         this.temperature = --this.temperature;
-      }
+    }
     public handleSteamer(): void {
         this.steamerOn = !this.steamerOn;
-      }
+    }
     public getSteamerOn(): boolean {
         return this.steamerOn;
-      }
+    }
     public getWaterLevel(): number {
         return this.waterLevel;
     }

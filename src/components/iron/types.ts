@@ -6,5 +6,5 @@ export interface IronInterface extends DeviceInterface {
     handleSteamer(): void;
     getSteamerOn(): boolean;
     getWaterLevel(): number;
-    addWater(): void
+    addWater(): void;
 }

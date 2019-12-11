@@ -1,14 +1,14 @@
 import { DeviceInterface } from './types';
-  
+
 export class Device implements DeviceInterface {
-    public name: string;
+    protected name: string = '';
     protected state: boolean = false;
     protected temperature: number = 0;
-    
-    constructor (name: string) {
+
+    constructor(name: string) {
         this.name = name;
     }
-    
+
     public on(): void {
         this.state = true;
     }
@@ -16,7 +16,7 @@ export class Device implements DeviceInterface {
         this.state = false;
     }
     public getState(): boolean {
-    return this.state;
+        return this.state;
     }
     public getName(): string {
         return this.name;

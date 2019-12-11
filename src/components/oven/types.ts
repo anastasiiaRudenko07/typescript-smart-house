@@ -2,7 +2,7 @@ import { DeviceInterface } from '../device/types';
 
 export interface OvenInterface extends DeviceInterface {
     off(): void;
-    setTemperature(temperature: number): void
+    setTemperature(temperature: number): void;
     getTimer(): number;
     setTimer(time: number): void;
     handleLamp(): void;
@@ -11,5 +11,5 @@ export interface OvenInterface extends DeviceInterface {
     nextMode(): void;
     previousMode(): void;
     run(): void;
-    runMode(): void
+    runMode(): void;
 }

@@ -11,7 +11,7 @@ class SmartHouse {
         -generateId(): number
         
         +addDevice(device: DeviceInterface): void
-        +getDevicesList(): string[]
+        +getDevicesList(): DeviceInterface[]
         +getIdOfDevice(device: DeviceInterface): number | undefined
         +getDeviceById(id: number): DeviceInterface | undefined
         +deleteDeviceById(id: number): void

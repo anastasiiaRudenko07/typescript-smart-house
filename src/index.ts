@@ -1,12 +1,12 @@
 import SmartHouse from './components/smart_house/smart_house';
 import { Iron } from './components/iron/iron';
-import { Oven  } from './components/oven/oven';
-import { isIronInterface, isOvenInterface} from './guards';
+import { Oven } from './components/oven/oven';
+import { isIronInterface, isOvenInterface } from './guards';
 
 const iron = new Iron('iron', 1, true);
 const oven = new Oven('oven');
 
-const house  = new SmartHouse('smart house');
+const house = new SmartHouse('smart house');
 house.addDevice(iron);
 house.addDevice(oven);
 
