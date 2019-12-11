@@ -1,11 +1,5 @@
 import { Device } from '../device/device';
-import { OvenInterface } from './types';
-
-enum Modes {
-    standart = 'standart',
-    grill = 'grill',
-    defrosting = 'defrosting',
-}
+import { OvenInterface, Modes } from './types';
 
 const TIMER_STANDART_MODE = 1800000; /*30 min*/
 const TIMER_GRILL_MODE = 2400000; /*40 min*/
@@ -24,8 +18,8 @@ export class Oven extends Device implements OvenInterface {
     protected timerMin: number = 1;
     protected timerMax: number = 7200000; /*2 hours*/
     protected lampOn: boolean = false;
-    protected modes: string[] = Object.values(Modes);
-    protected currentMode: string = Modes.standart;
+    protected modes: string[] = Object.keys(Modes);
+    protected currentMode: keyof typeof Modes = Modes.standart;
     protected isReady: boolean = false;
 
     constructor(name: string) {
@@ -62,29 +56,18 @@ export class Oven extends Device implements OvenInterface {
         return this.lampOn;
     }
 
+    public getModesList(): string[] {
+        return this.modes;
+    }
     public getCurrentMode(): string {
         return this.currentMode;
     }
-    public nextMode(): void {
-        const indexCurrentMode = this.modes.indexOf(this.currentMode);
-
-        if (indexCurrentMode === this.modes.length - 1) {
-            this.currentMode = this.modes[0];
-        } else {
-            this.currentMode = this.modes[indexCurrentMode + 1];
-        }
+    public switchMode(mode: keyof typeof Modes): void {
+        this.currentMode = mode;
     }
-    public previousMode(): void {
-        const indexCurrentMode = this.modes.indexOf(this.currentMode);
 
-        if (indexCurrentMode === 0) {
-            this.currentMode = this.modes[this.modes.length - 1];
-        } else {
-            this.currentMode = this.modes[indexCurrentMode - 1];
-        }
-    }
     public run(): void {
-        if (this.temperature && this.timer) {
+        if (this.state && this.temperature && this.timer) {
             new Promise(resolve => {
                 setTimeout(() => {
                     resolve();

@@ -59,11 +59,11 @@ class SmartHouse {
     properties:
         #temperatureMin: number
         #temperatureMax: number
-        #timer: number // 1-300
+        #timer: number 
         #timerMin: number
         #timerMax: number
         #lampOn: boolean
-        #modes: [string] // "grill", "defrosting", "standart"
+        #modes: [string] 
         #currentMode: number
         #isReady: boolean
     behavior:
@@ -77,11 +77,11 @@ class SmartHouse {
  
         +handlelamp(): void
         +getLampOn(): boolean
- 
+
+        +getModesList(): string[]
         +getCurrentMode(): string
-        +nextMode(): void
-        +previousMode(): void
- 
+        +switchMode(mode: keyof typeof Modes): void
+
         +run(): void 
         +runMode(): void
  }
