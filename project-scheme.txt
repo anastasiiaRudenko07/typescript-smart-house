@@ -12,8 +12,10 @@ class SmartHouse {
         
         +addDevice(device: IDevice): void
         +getDevicesList(): IDevice[]
+        
         +getIdOfDevice(device: IDevice): number | undefined
         +getDeviceById(id: number): IDevice | undefined
+        
         +deleteDeviceById(id: number): void
         +deleteAllDevices(): void
         
@@ -64,7 +66,7 @@ class SmartHouse {
         #timerMax: number
         #lampOn: boolean
         #modes: [string] 
-        #currentMode: number
+        #currentMode: string
         #isReady: boolean
     behavior:
         +constructor(name: string): void

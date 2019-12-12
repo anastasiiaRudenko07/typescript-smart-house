@@ -12,6 +12,7 @@ export default class SmartHouse {
     public getName(): string {
         return this.name;
     }
+
     public setName(name: string = ''): void {
         this.name = name;
     }
@@ -24,9 +25,11 @@ export default class SmartHouse {
         const id = this.generateId();
         this.devicesList.set(id, device);
     }
+
     public getDevicesList(): IDevice[] {
         return [...this.devicesList.values()];
     }
+
     public getIdOfDevice(device: IDevice): number | undefined {
         const foundSet = [...this.devicesList.entries()].find(([, value]) => {
             return value === device;
@@ -38,17 +41,21 @@ export default class SmartHouse {
     public getDeviceById(id: number): IDevice | undefined {
         return this.devicesList.get(id);
     }
+
     public deleteDeviceById(id: number): void {
         this.devicesList.delete(id);
     }
+
     public deleteAllDevices(): void {
         this.devicesList.clear();
     }
+
     public onAllDevices(): void {
         this.devicesList.forEach(value => {
             value.on();
         });
     }
+    
     public offAllDevices(): void {
         this.devicesList.forEach(value => {
             value.off();

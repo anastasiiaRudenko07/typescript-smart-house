@@ -13,27 +13,33 @@ export class Iron extends Device implements IIron {
         this.temperature = temperature;
         this.steamerOn = steamerOn;
     }
+
     public increaseTemperature(): void {
         if (this.temperature >= this.temperatureMax) {
             return;
         }
         this.temperature = ++this.temperature;
     }
+
     public decreaseTemperature(): void {
         if (this.temperature <= this.temperatureMin) {
             return;
         }
         this.temperature = --this.temperature;
     }
+
     public handleSteamer(): void {
         this.steamerOn = !this.steamerOn;
     }
+
     public getSteamerOn(): boolean {
         return this.steamerOn;
     }
+
     public getWaterLevel(): number {
         return this.waterLevel;
     }
+    
     public addWater(): void {
         if (this.waterLevel < this.waterLevelMax) {
             this.waterLevel++;

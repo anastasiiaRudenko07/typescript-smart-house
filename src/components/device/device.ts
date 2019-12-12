@@ -12,15 +12,19 @@ export class Device implements IDevice {
     public on(): void {
         this.state = true;
     }
+
     public off(): void {
         this.state = false;
     }
+
     public getState(): boolean {
         return this.state;
     }
+
     public getName(): string {
         return this.name;
     }
+    
     public getTemperature(): number {
         return this.temperature;
     }

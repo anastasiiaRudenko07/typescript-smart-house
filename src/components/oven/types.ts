@@ -1,7 +1,7 @@
 export enum Modes {
-    standart = 'standart',
-    grill = 'grill',
-    defrosting = 'defrosting',
+    STANDART = 'STANDART',
+    GRILL = 'GRILL',
+    DEFROSTING = 'DEFROSTING',
 }
 
 export interface IOven {

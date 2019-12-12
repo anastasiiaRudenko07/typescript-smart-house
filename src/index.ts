@@ -14,7 +14,7 @@ const deviceID = house.getIdOfDevice(oven)!;
 const recievedDevice = house.getDeviceById(deviceID)!;
 
 if (isIOven(recievedDevice)) {
-    recievedDevice.switchMode('defrosting');
+    recievedDevice.switchMode("GRILL");
 
     console.log(recievedDevice.getCurrentMode());
     console.log(recievedDevice.getModesList());
