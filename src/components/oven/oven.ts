@@ -1,5 +1,5 @@
 import { Device } from '../device/device';
-import { OvenInterface, Modes } from './types';
+import { IOven, Modes } from './types';
 
 const TIMER_STANDART_MODE = 1800000; /*30 min*/
 const TIMER_GRILL_MODE = 2400000; /*40 min*/
@@ -11,7 +11,7 @@ const TEMPERATURE_GRILL_MODE = 200;
 const TEMPERATURE_DEFROSTING_MODE = 30;
 const TEMPERATURE_DEFAULT = 150;
 
-export class Oven extends Device implements OvenInterface {
+export class Oven extends Device implements IOven {
     protected temperatureMin: number = 0; /*degrees celsius*/
     protected temperatureMax: number = 250;
     protected timer: number = 0; /*in milliseconds */

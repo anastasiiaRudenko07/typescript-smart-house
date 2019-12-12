@@ -1,7 +1,7 @@
 import { Device } from '../device/device';
-import { IronInterface } from './types';
+import { IIron } from './types';
 
-export class Iron extends Device implements IronInterface {
+export class Iron extends Device implements IIron {
     protected temperatureMin: number = 0;
     protected temperatureMax: Number = 3;
     protected steamerOn: boolean = false;

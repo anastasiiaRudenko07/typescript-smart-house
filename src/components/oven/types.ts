@@ -6,7 +6,7 @@ export enum Modes {
     defrosting = 'defrosting',
 }
 
-export interface OvenInterface extends IDevice {
+export interface IOven extends IDevice {
     off(): void;
     setTemperature(temperature: number): void;
     getTimer(): number;
