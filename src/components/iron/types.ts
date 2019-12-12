@@ -1,6 +1,4 @@
-import { IDevice } from '../device/types';
-
-export interface IIron extends IDevice {
+export interface IIron {
     increaseTemperature(): void;
     decreaseTemperature(): void;
     handleSteamer(): void;

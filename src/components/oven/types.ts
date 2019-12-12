@@ -1,12 +1,10 @@
-import { IDevice } from '../device/types';
-
 export enum Modes {
     standart = 'standart',
     grill = 'grill',
     defrosting = 'defrosting',
 }
 
-export interface IOven extends IDevice {
+export interface IOven {
     off(): void;
     setTemperature(temperature: number): void;
     getTimer(): number;
