@@ -2,8 +2,6 @@ import { Device } from '../device/device';
 import { IIron } from './types';
 
 export class Iron extends Device implements IIron {
-    protected temperatureMin: number = 0;
-    protected temperatureMax: Number = 3;
     protected steamerOn: boolean = false;
     protected waterLevel: number = 0;
     protected waterLevelMax: number = 3;
@@ -39,7 +37,7 @@ export class Iron extends Device implements IIron {
     public getWaterLevel(): number {
         return this.waterLevel;
     }
-    
+
     public addWater(): void {
         if (this.waterLevel < this.waterLevelMax) {
             this.waterLevel++;

@@ -28,6 +28,8 @@ class SmartHouse {
         #state: boolean
         +name: string
         #temperature: number
+        #temperatureMin: number;
+        #temperatureMax: number;
     behavior:
         +constructor(name: string): void
         +on(): void
@@ -85,6 +87,6 @@ class SmartHouse {
         +switchMode(mode: keyof typeof Modes): void
 
         +run(): void 
-        +runMode(): void
+        +runMode(mode: keyof typeof Modes): void
  }
  

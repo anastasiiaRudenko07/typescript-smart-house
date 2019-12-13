@@ -4,6 +4,8 @@ export class Device implements IDevice {
     protected name: string = '';
     protected state: boolean = false;
     protected temperature: number = 0;
+    protected temperatureMin: number = 0;
+    protected temperatureMax: number = 3;
 
     constructor(name: string) {
         this.name = name;
@@ -24,7 +26,7 @@ export class Device implements IDevice {
     public getName(): string {
         return this.name;
     }
-    
+
     public getTemperature(): number {
         return this.temperature;
     }

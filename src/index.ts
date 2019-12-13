@@ -14,9 +14,10 @@ const deviceID = house.getIdOfDevice(oven)!;
 const recievedDevice = house.getDeviceById(deviceID)!;
 
 if (isIOven(recievedDevice)) {
-    recievedDevice.switchMode("GRILL");
+    recievedDevice.switchMode('GRILL');
 
-    console.log(recievedDevice.getCurrentMode());
+    recievedDevice.setTemperature(67);
+    recievedDevice.runMode('GRILL');
     console.log(recievedDevice.getModesList());
 } else if (isIronInterface(recievedDevice)) {
     //...

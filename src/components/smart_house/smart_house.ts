@@ -55,7 +55,7 @@ export default class SmartHouse {
             value.on();
         });
     }
-    
+
     public offAllDevices(): void {
         this.devicesList.forEach(value => {
             value.off();

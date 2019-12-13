@@ -1,26 +1,28 @@
 import { Device } from '../device/device';
 import { IOven, Modes } from './types';
+import * as constants from './constants';
 
-const TIMER_MIN = 1;
-const TIMER_MAX = 7200000; /*2 hours*/
-const TIMER_STANDART_MODE = 1800000; /*30 min*/
-const TIMER_GRILL_MODE = 2400000; /*40 min*/
-const TIMER_DEFROSTING_MODE = 1800000; /*30 min*/
-const TIMER_DEFAULT = 600000; /*10 min*/
+const modesValues = new Map();
+modesValues.set(Modes.STANDART, {
+    temperature: constants.TEMPERATURE_STANDART_MODE,
+    timer: constants.TIMER_STANDART_MODE,
+});
 
-const TEMPERATURE_MIN = 0; /*degrees celsius*/
-const TEMPERATURE_MAX = 250;
-const TEMPERATURE_STANDART_MODE = 180;
-const TEMPERATURE_GRILL_MODE = 200;
-const TEMPERATURE_DEFROSTING_MODE = 30;
-const TEMPERATURE_DEFAULT = 150;
+modesValues.set(Modes.GRILL, {
+    temperature: constants.TEMPERATURE_GRILL_MODE,
+    timer: constants.TIMER_GRILL_MODE,
+});
+
+modesValues.set(Modes.DEFROSTING, {
+    temperature: constants.TEMPERATURE_DEFROSTING_MODE,
+    timer: constants.TIMER_DEFROSTING_MODE,
+});
 
 export class Oven extends Device implements IOven {
-    protected temperatureMin: number = TEMPERATURE_MIN;
-    protected temperatureMax: number = TEMPERATURE_MAX;
+    protected temperatureMax: number = constants.TEMPERATURE_MAX;
     protected timer: number = 0; /*in milliseconds */
-    protected timerMin: number = TIMER_MIN;
-    protected timerMax: number = TIMER_MAX;
+    protected timerMin: number = constants.TIMER_MIN;
+    protected timerMax: number = constants.TIMER_MAX;
     protected lampOn: boolean = false;
     protected modes: string[] = Object.keys(Modes);
     protected currentMode: keyof typeof Modes = Modes.STANDART;
@@ -47,6 +49,7 @@ export class Oven extends Device implements IOven {
     public getTimer(): number {
         return this.timer;
     }
+
     public setTimer(time: number): void {
         if (time >= this.timerMin && time <= this.timerMax) {
             this.timer = time;
@@ -85,28 +88,11 @@ export class Oven extends Device implements IOven {
         }
     }
 
-    public runMode(): void {
-        switch (this.currentMode) {
-            case Modes.STANDART:
-                this.temperature = TEMPERATURE_STANDART_MODE;
-                this.timer = TIMER_STANDART_MODE;
-                this.run();
-                break;
-            case Modes.GRILL:
-                this.temperature = TEMPERATURE_GRILL_MODE;
-                this.timer = TIMER_GRILL_MODE;
-                this.run();
-                break;
-            case Modes.DEFROSTING:
-                this.temperature = TEMPERATURE_DEFROSTING_MODE;
-                this.timer = TIMER_DEFROSTING_MODE;
-                this.run();
-                break;
-            default:
-                this.temperature = TEMPERATURE_DEFAULT;
-                this.timer = TIMER_DEFAULT;
-                this.run();
-                break;
-        }
+    public runMode(mode: keyof typeof Modes): void {
+        const modeSettings = modesValues.get(mode);
+
+        this.temperature = modeSettings.temperature;
+        this.timer = modeSettings.timer;
+        this.run();
     }
 }
